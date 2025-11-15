@@ -28,14 +28,21 @@ export function CalculateProvider({ children }: { children: ReactNode }) {
         const initialValue = parseNumber(req.initial)
         const monthlyValue = parseNumber(req.monthly)
         const taxRate = parseNumber(req.tax) / 100
-        const timeValue = parseInt(req.time)
+        let tax: number
+        const timeValue = req.type == "year" ? parseInt(req.time) * 12 : parseInt(req.time)
+
+        if(req.type === "year"){
+            tax = Math.pow(1 + taxRate, 1 / 12) - 1
+        } else {
+            tax = taxRate
+        }
 
         let balance = initialValue;
         let totalGains = 0
         let totalDeposits = 0
 
         for (let month = 1; month <= timeValue; month++) {
-            const gains = round(balance * taxRate);
+            const gains = round(balance * tax);
             const total = round(balance + gains);
             const actualMonthly = month === 1 ? 0 : monthlyValue;
             const finalBalance = round(total + monthlyValue);

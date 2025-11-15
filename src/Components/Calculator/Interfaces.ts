@@ -3,6 +3,7 @@ export interface ResultRequest {
     monthly: string,
     tax: string,
     time: string
+    type: "year" | "month"
 }
 
 export interface ResultResponse {
