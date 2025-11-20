@@ -26,7 +26,7 @@ export function CalculateProvider({ children }: { children: ReactNode }) {
         setLoading(true)
         const report: ResultResponse[] = [];
         const initialValue = parseNumber(req.initial)
-        const monthlyValue = parseNumber(req.monthly)
+        const monthlyValue = req.monthly ? parseNumber(req.monthly) : 0
         const taxRate = parseNumber(req.tax) / 100
         let tax: number
         const timeValue = req.type == "year" ? parseInt(req.time) * 12 : parseInt(req.time)
@@ -69,8 +69,7 @@ export function CalculateProvider({ children }: { children: ReactNode }) {
             totalDeposits,
             finalBalance
         }
-
-
+        
         setResponse({ report, summary });
         setLoading(false)
     }

@@ -77,24 +77,27 @@ export default function Calculator() {
               >
                 {item.label}
               </label>
-              <input
-                id={item.id}
-                name={item.id}
-                className="w-100 px-2 border-0 fs-5"
-                style={{ outline: "none" }}
-                type="text"
-                inputMode="numeric"
-                onChange={handleChange}
-                value={item.value}
-                disabled={loading}
-              />
+              <div className="w-100 h-100 d-flex">
+                <span className="input-group-text">R$:</span>
+                <input
+                  id={item.id}
+                  name={item.id}
+                  className="w-100 px-2 border-0 fs-5"
+                  style={{ outline: "none" }}
+                  type="text"
+                  inputMode="decimal"
+                  onChange={handleChange}
+                  value={item.value}
+                  disabled={loading}
+                />
+              </div>
             </div>
           );
         })}
         <div className="w-100 d-flex justify-content-around align-items-center">
           <select
             className="form-select"
-            style={{ width: "33%", height: "100%" }}
+            style={{ width: "45%", height: "100%" }}
             value={formData.type}
             name="type"
             onChange={handleSelectChange}
@@ -107,7 +110,7 @@ export default function Calculator() {
           <button
             type="reset"
             className="btn btn-light btn-lg text-dark"
-            style={{ width: "33%", height: "100%" }}
+            style={{ width: "45%", height: "100%" }}
             onClick={(e) => clearForm(e)}
             disabled={loading}
           >
