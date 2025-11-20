@@ -1,5 +1,4 @@
 import { useCalculate } from "../../Context/CalculateContext";
-import ResultChart from "../Chart/ResultChart";
 import Spinner from "../Loading/Spinner";
 
 export default function Result() {
